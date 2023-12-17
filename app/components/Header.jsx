@@ -50,7 +50,7 @@ function Header() {
       <button className="bg-black text-white p-2 px-4 rounded-full hidden md:block">
         Home
       </button>
-      <button className="font-semibold p-2 px-4 rounded-full text-[23px]">Create</button>
+      <button className="font-semibold p-2 px-4 rounded-full text-[23px]" onClick={()=>router.push('/pin-builder')}>Create</button>
       <div className='bg-[#e9e9e9] p-3 gap-3 items-center rounded-full w-full hidden md:flex'>
         <IoSearchSharp className="text-[25px] text-gray-500" />
         <input
