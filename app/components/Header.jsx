@@ -1,16 +1,42 @@
 "use client"
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react"
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+import app from '../Shared/firebaseConfig'
+
 
 
 function Header() {
-    const { data: session } = useSession();
+   
 
-    console.log(session);
+
+
+  const { data: session } = useSession();
+  //const router=useRouter();
+  const db = getFirestore(app);
+
+  //console.log(session);
+
+  useEffect(()=>{
+    saveUserInfo();
+  },[session]);
+
+  const saveUserInfo=async()=>{
+    if(session?.user)
+    {
+      await setDoc(doc(db, "user", session.user.email), {
+        userName: session.user.name,
+        email: session.user.email,
+        userImage: session.user.image
+      });
+    }
+  };
+
+
   return (
     <div className="flex gap-3 md:gap-2 items-center p-6" >
       <Image
@@ -36,7 +62,7 @@ function Header() {
       <FaBell className="text-[25px] md:text-[40px] text-gray-500 cursor-pointer" />
       <AiFillMessage className="text-[25px] md:text-[40px] text-gray-500 cursor-pointer" />
       {session?.user? <Image
-        src={session?.user?.image}
+        src={session.user.image}
         alt="user-image"
         width={50}
         height={50}
@@ -48,3 +74,5 @@ function Header() {
 }
 
 export default Header;
+
+
