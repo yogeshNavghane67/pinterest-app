@@ -15,20 +15,22 @@ function Form() {
     const [desc,setDesc]=useState();
     const [link,setLink]=useState();
     const [file,setFile]=useState();
-
+    const [loading,setLoading]=useState(false);
+    const router=useRouter();
     const storage=getStorage(app)
+    const db=getFirestore(app);
+    const postId=Date.now().toString();
 
     const onSave=()=>{
-        console.log("title:",title,"Desc",desc,"link",link)
-        console.log("File:",file)
+        // console.log("title:",title,"Desc",desc,"link",link)
+        // console.log("File:",file)
 
     
-    // const [loading,setLoading]=useState(false);
-    // const router=useRouter();
-    // const db=getFirestore(app);
-    // const postId=Date.now().toString();
+
+    
+    
     // const onSave=()=>{
-    //    setLoading(true)
+       setLoading(true)
        uploadFile();
    
 
@@ -41,23 +43,23 @@ function Form() {
         }).then(resp=>{
             getDownloadURL(storageRef).then(async(url)=>{
                 console.log("DownloadUrl",url);
-    //             const postData={
-    //                 title:title,
-    //                 desc:desc,
-    //                 link:link,
-    //                 image:url,
-    //                 userName:session.user.name,
-    //                 email:session.user.email,
-    //                 userImage:session.user.image,
+                const postData={
+                    title:title,
+                    desc:desc,
+                    link:link,
+                    image:url,
+                    userName:session.user.name,
+                    email:session.user.email,
+                    userImage:session.user.image
     //                 id:postId
-    //             }
+                }
 
-    //             await setDoc(doc(db,'pinterest-post',postId),
-    //             postData).then(resp=>{
-    //                 console.log("Saved")
-    //                 setLoading(true);
-    //                 router.push("/"+session.user.email)
-    //             })
+                await setDoc(doc(db,'pinterest-post',postId),
+                postData).then(resp=>{
+                     console.log("Saved")
+                    setLoading(true);
+                    router.push("/"+session.user.email)
+                  })
                 
             })
         })
@@ -72,7 +74,13 @@ function Form() {
              className='bg-red-500 p-2
             text-white font-semibold px-3 
             rounded-lg'>
-            Save</button>
+                {loading? <Image src="/loading-indicator.png" 
+                width={30} 
+                height={30} 
+                alt='loading'
+                className='animate-spin'  />:
+                <span>Save</span>}
+            </button>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
            
