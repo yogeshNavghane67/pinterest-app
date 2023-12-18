@@ -16,31 +16,31 @@ function Form() {
     const [link,setLink]=useState();
     const [file,setFile]=useState();
 
+    const storage=getStorage(app)
 
     const onSave=()=>{
         console.log("title:",title,"Desc",desc,"link",link)
         console.log("File:",file)
 
-    }
+    
     // const [loading,setLoading]=useState(false);
     // const router=useRouter();
-    // const storage=getStorage(app)
     // const db=getFirestore(app);
     // const postId=Date.now().toString();
     // const onSave=()=>{
     //    setLoading(true)
-    //    uploadFile();
+       uploadFile();
    
 
-    // }
+    }
 
-    // const uploadFile=()=>{
-    //     const storageRef=ref(storage,'pinterest/'+file.name);
-    //     uploadBytes(storageRef,file).then((snapshot)=>{
-    //         console.log("File Uploaded")
-    //     }).then(resp=>{
-    //         getDownloadURL(storageRef).then(async(url)=>{
-    //             console.log("DownloadUrl",url);
+    const uploadFile=()=>{
+        const storageRef=ref(storage,'pinterest/'+file.name);
+        uploadBytes(storageRef,file).then((snapshot)=>{
+            console.log("File Uploaded")
+        }).then(resp=>{
+            getDownloadURL(storageRef).then(async(url)=>{
+                console.log("DownloadUrl",url);
     //             const postData={
     //                 title:title,
     //                 desc:desc,
@@ -59,9 +59,9 @@ function Form() {
     //                 router.push("/"+session.user.email)
     //             })
                 
-    //         })
-    //     })
-    //  }
+            })
+        })
+     }
 
    
    
