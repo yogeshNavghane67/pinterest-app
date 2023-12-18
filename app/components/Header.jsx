@@ -12,10 +12,6 @@ import { useRouter } from "next/navigation";
 
 
 function Header() {
-   
-
-
-
   const { data: session } = useSession();
   const router=useRouter();
   const db = getFirestore(app);
@@ -57,7 +53,7 @@ function Header() {
         onClick={()=>router.push('/')}
         className="hover:bg-gray-300 p-2 rounded-full cursor-pointer"
       />
-      <button className="bg-black text-white p-2 px-4 rounded-full hidden md:block">
+      <button className="bg-black text-white p-2 px-4 rounded-full hidden md:block" onClick={()=>router.push('/')}>
         Home
       </button>
       <button className="font-semibold p-2 px-4 rounded-full text-[23px]" onClick={()=>onCreateClick()}>Create</button>

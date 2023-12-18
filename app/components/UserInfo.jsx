@@ -9,8 +9,10 @@ function UserInfo({ userInfo }) {
   const { data: session } = useSession();
   const onLogoutClick = () => {
     signOut();
-    router.push("/");
+   router.push('/');
   };
+
+ 
 
   return (
     <div className="flex flex-col items-center">
@@ -23,7 +25,7 @@ function UserInfo({ userInfo }) {
       />
       <h2 className="text-[30px] font-semibold">{userInfo.userName}</h2>
       <h2 className="text-gray-400">{userInfo.email}</h2>
-      <div>
+      <div className='flex gap-4'>
         <button className="bg-blue-100 p-2 px-3 font-semibold mt-5 rounded-full">
           Share
         </button>
@@ -32,6 +34,7 @@ function UserInfo({ userInfo }) {
             className="bg-blue-100
          p-2 px-3 font-semibold mt-5 rounded-full"
             onClick={() => onLogoutClick()}
+            //onClick={()=>router.push('/')}
           >
             Logout
           </button>: null}

@@ -4,7 +4,7 @@ import UserTag from "../UserTag";
 import Image from "next/image";
 
 function PinItem({ pin }) {
-//   const router = useRouter();
+  const router = useRouter();
   const user = {
     name: pin?.userName,
     image: pin?.userImage,
@@ -22,8 +22,7 @@ function PinItem({ pin }) {
     before:opacity-50
     cursor-pointer
     "
-        // onClick={() => router.push("/pin/" + pin.id)}
-      >
+        onClick={() => router.push("/pin/" + pin.id)}>
         <Image
           src={pin.image}
           alt={pin.title}
