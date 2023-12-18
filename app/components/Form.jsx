@@ -17,7 +17,7 @@ function Form() {
     const [file,setFile]=useState();
     const [loading,setLoading]=useState(false);
     const router=useRouter();
-    const storage=getStorage(app)
+    const storage=getStorage(app);
     const db=getFirestore(app);
     const postId=Date.now().toString();
 
@@ -50,8 +50,8 @@ function Form() {
                     image:url,
                     userName:session.user.name,
                     email:session.user.email,
-                    userImage:session.user.image
-    //                 id:postId
+                    userImage:session.user.image,
+                    id:postId
                 }
 
                 await setDoc(doc(db,'pinterest-post',postId),
