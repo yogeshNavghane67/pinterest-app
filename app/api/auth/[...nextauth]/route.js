@@ -9,8 +9,8 @@ const handler = NextAuth({
         
       ],
       // Callbacks for various authentication events
+      secret: process.env.SECRET,
  
-    
 },
 
 )
