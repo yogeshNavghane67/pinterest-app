@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Pinterest 
+
+![Screenshot (530)](https://github.com/yogeshNavghane67/pinterest-app/assets/124075039/9ab095df-9812-481e-8b50-6c71b728fa8d)
+
 
 ## Getting Started
 
